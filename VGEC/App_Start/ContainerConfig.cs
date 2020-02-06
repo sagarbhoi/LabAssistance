@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VGEC.Models;
+using VGEC.ViewModel;
 
 namespace VGEC.App_Start
 {
@@ -16,6 +17,7 @@ namespace VGEC.App_Start
             var builer = new ContainerBuilder();
            builer.RegisterControllers(typeof(MvcApplication).Assembly);
             builer.RegisterType<VgecDbContext>().InstancePerRequest();
+            builer.RegisterType<AdminViewModal>().As<IAdminViewModel>().InstancePerRequest();
             var container = builer.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

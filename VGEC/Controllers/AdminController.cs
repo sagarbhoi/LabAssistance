@@ -10,8 +10,8 @@ namespace VGEC.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly AdminViewModal adminviewmodal;
-        public AdminController(AdminViewModal avm)
+        private readonly IAdminViewModel adminviewmodal;
+        public AdminController(IAdminViewModel avm)
         {
             this.adminviewmodal = avm;
         }
@@ -25,7 +25,8 @@ namespace VGEC.Controllers
         {
             if(adminviewmodal.Authenticate(admin))
             {
-                return RedirectToAction("Home","Admin");
+                Session["user"] = admin.UserName;
+                return View("Home",admin);
             }
             else
             {
@@ -33,6 +34,21 @@ namespace VGEC.Controllers
                 return View();
 
             }
+        }
+        public ActionResult Home()
+        {   if (Session["user"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return View("Index");
+            }
+        }
+        public ActionResult Logout()
+        {
+            Session.Remove("user");
+            return View("Index");
         }
     }
 }

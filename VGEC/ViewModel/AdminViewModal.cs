@@ -6,14 +6,14 @@ using VGEC.Models;
 
 namespace VGEC.ViewModel
 {
-    public class AdminViewModal
+    public class AdminViewModal :IAdminViewModel
     {
         private readonly VgecDbContext db;
         public AdminViewModal(VgecDbContext db)
         {
             this.db = db;
         }
-        public bool Authenticate(IPerson admin)
+        public bool Authenticate(IPerson admin) 
         {
           var check=  db.admins.FirstOrDefault(x=>x.UserName.Equals(admin.UserName) && x.Password.Equals(admin.Password));
             if (check == null)
