@@ -1,0 +1,37 @@
+﻿@model VGEC.Models.Student
+
+@{
+    ViewBag.Title = "Student-Login";
+}
+    <div style="margin-top:5%">
+        @using (Html.BeginForm("Index","Student"))
+        {
+            <div class="row">
+                <div class="col-sm-3">
+                    @Html.LabelFor(model => model.E_Id)
+                </div>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(model => model.E_Id,new { @class="form-control"})
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-3">
+                    @Html.LabelFor(model => model.Password)
+                </div>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(model => model.Password,new { @class="form-control"})
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-success">Login</button>
+                </div>
+                <div class="col-sm-4">
+                </div>
+            </div>
+        }
+    </div>

@@ -1,0 +1,33 @@
+﻿@using VGEC.Models
+@model VGEC.ViewModel.getUsers
+ 
+@{
+    ViewBag.Title = "Index";
+}
+
+    <form method="post" id="form1" >
+        <div class="row" style="margin-top:10%">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <lable for="users">Select Users:</lable>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--@Html.DropDownList("Select Users",
+                            new SelectList(Enum.GetValues(typeof(Users))),
+                             new { @class = "form-control" })-->
+
+                        @Html.EnumDropDownListFor(model => model.users, new { @onchange = "this.form.submit()", @class = "form-control" })
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+        </div>
+    </form>
+    
