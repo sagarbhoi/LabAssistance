@@ -21,7 +21,7 @@ namespace VGEC.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(Admin  admin)
+        public ActionResult Index(VGEC.Models.Admin admin)
         {
             if(adminviewmodal.Authenticate(admin))
             {
@@ -49,6 +49,26 @@ namespace VGEC.Controllers
         {
             Session.Remove("user");
             return View("Index");
+        }
+        public ActionResult AddSubject()
+        {
+            return View(adminviewmodal.GetAllSubject()) ;
+        }
+        [HttpPost]
+        public ActionResult AddSubject(Subject sub)
+        {
+            adminviewmodal.AddSubject(sub);
+            return View(adminviewmodal.GetAllSubject());
+        }
+        public ActionResult AddFaculty()
+        {
+            return View(adminviewmodal.GetAllFacuilty());
+        }
+        [HttpPost]
+        public ActionResult AddFaculty(Faculty f)
+        {
+            adminviewmodal.AddFaculty(f);
+            return View(adminviewmodal.GetAllFacuilty());
         }
     }
 }

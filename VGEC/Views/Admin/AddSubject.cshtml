@@ -1,0 +1,134 @@
+﻿@model IEnumerable<VGEC.Models.Subject>
+@{
+    Layout = "~/Views/Shared/_LoginAdmin.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <div class="row">
+        &nbsp;&nbsp;
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="col-sm-6">
+                @Html.Label("Subject_Name", "Subject Name")
+            </div>
+            <div class="col-sm-6">
+                @Html.TextBox("Subject_Name", "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="col-sm-6">
+                @Html.Label("Sub_Code", "Subject Code")
+            </div>
+            <div class="col-sm-6">
+                @Html.TextBox("Sub_Code", "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="col-sm-6">
+                @Html.Label("Semester", "Subject Code")
+            </div>
+
+
+            <div class="col-sm-6">
+                @Html.DropDownList("Semester", new SelectList(new[] { 1, 2, 3, 4, 5, 6, 7, 8 }), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="col-sm-6">
+                @Html.Label("IsElective", "Elective")
+            </div>
+
+
+            <div class="col-sm-6">
+                @Html.CheckBox("IsElective", false,new { @class="toogle"})
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="col-sm-6">
+                @Html.Label("IsActive", "Active")
+            </div>
+
+
+            <div class="col-sm-6">
+                @Html.CheckBox("IsActive", false,new { @class="toogle"})
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+            <button type="submit">Submit</button>
+        </div>
+        <div class="col-sm-4">
+        </div>
+
+    </div>
+}
+<hr />
+<h1>Faculty List </h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sr.No</th>
+            <th>Subject Name</th>
+            <th>Subject Code</th>
+            <th>Semester</th>
+            <th>Elective</th>
+            <th>Active</th>
+        </tr>
+    </thead>
+    @if (Session["user"] != null && Model != null)
+    {
+
+
+        int i = 1;
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@i</td>
+                <td>@item.Subject_Name</td>
+                <td>@item.Sub_Code</td>
+                <td>@item.Semester</td>
+                <td>@item.IsElective</td>
+                <td>@item.IsActive</td>
+            </tr>
+            i++;
+        }
+
+    }
+</table>

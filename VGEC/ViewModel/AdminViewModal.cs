@@ -13,12 +13,34 @@ namespace VGEC.ViewModel
         {
             this.db = db;
         }
-        public bool Authenticate(IPerson admin) 
+
+        public void AddFaculty(Faculty faculty)
         {
-          var check=  db.admins.FirstOrDefault(x=>x.UserName.Equals(admin.UserName) && x.Password.Equals(admin.Password));
+            db.faculties.Add(faculty);
+            db.SaveChanges();
+        }
+
+        public void AddSubject(Subject sub)
+        {
+            db.subjects.Add(sub);
+            db.SaveChanges();
+        }
+
+        public bool Authenticate(IPerson person) 
+        {
+          var check=  db.admins.FirstOrDefault(x=>x.UserName.Equals(person.UserName) && x.Password.Equals(person.Password));
             if (check == null)
                 return false;
             return true;
+        }
+
+        public IEnumerable<Faculty> GetAllFacuilty()
+        {
+            return db.faculties.OrderBy(x=>x.UserName).ToList();
+        }
+        public IEnumerable<Subject> GetAllSubject()
+        {
+            return db.subjects.OrderBy(x => x.Subject_Name).ToList();
         }
     }
 }

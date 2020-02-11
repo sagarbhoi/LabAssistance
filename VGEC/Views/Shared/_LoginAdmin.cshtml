@@ -9,6 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+   
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,12 +23,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Home", "Admin")</li>
-                    <li>@Html.ActionLink("Add Student", "Home", "Admin")</li>
-                    <li>@Html.ActionLink("Add Faculties", "Home", "Admin")</li>
-                    <li>@Html.ActionLink("Add Subject", "Home", "Admin")</li>
+                    <li>@Html.ActionLink("Add Faculties", "AddFaculty", "Admin")</li>
+                    <li>@Html.ActionLink("Add Subject", "AddSubject", "Admin")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink(Session["user"].ToString(), "Home", "Admin")</li>
+                    @if (Session["user"] == null)
+                    {
+                        Response.Redirect("\\Admin\\Index");
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink(Session["user"].ToString(), "Home", "Admin")</li>
+
+                    }
                     <li>@Html.ActionLink("LogOut", "Logout", "Admin")</li>
                 </ul>
             </div>

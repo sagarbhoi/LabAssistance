@@ -3,18 +3,28 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class new1 : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Admins",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserName = c.String(),
+                        Password = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.Faculties",
                 c => new
                     {
                         Fac_Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
                         Email = c.String(),
                         ContactNo = c.String(),
+                        UserName = c.String(),
                         Password = c.String(),
                     })
                 .PrimaryKey(t => t.Fac_Id);
@@ -25,8 +35,10 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         C_Id = c.Int(nullable: false),
-                        F_Id = c.Int(nullable: false),
+                        Fac_Id = c.Int(nullable: false),
                         Sem = c.Int(nullable: false),
+                        UserName = c.String(),
+                        Password = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -36,11 +48,11 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         E_Id = c.String(nullable: false),
-                        Name = c.String(),
-                        Password = c.String(nullable: false),
                         Email = c.String(),
                         Contact = c.String(),
                         C_Id = c.Int(nullable: false),
+                        UserName = c.String(),
+                        Password = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -65,6 +77,7 @@
             DropTable("dbo.Students");
             DropTable("dbo.Mentors");
             DropTable("dbo.Faculties");
+            DropTable("dbo.Admins");
         }
     }
 }

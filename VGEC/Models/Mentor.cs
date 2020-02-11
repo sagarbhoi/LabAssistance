@@ -6,15 +6,17 @@ using System.Web;
 
 namespace VGEC.Models
 {
-    public class Mentor: IPerson
+    public class Mentor : IPerson
     {
         [Key]
         public int Id { get; set; }
         [Required]
         public int C_Id { get; set; }
         [Required]
-        public int F_Id { get; set; }
+        public int Fac_Id { get; set; }
         [Required]
         public int Sem { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
     }
 }

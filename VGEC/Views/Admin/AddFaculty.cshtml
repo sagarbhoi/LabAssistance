@@ -1,0 +1,79 @@
+﻿@model IEnumerable<VGEC.Models.Faculty>
+@{
+    Layout = "~/Views/Shared/_LoginAdmin.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <div class="row">
+&nbsp;&nbsp;
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="col-sm-6">
+                @Html.Label("UserName", "Name")
+            </div>
+            <div class="col-sm-6">
+                @Html.TextBox("UserName", "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8">
+            <div class="col-sm-6">
+                @Html.Label("Email", "Email")
+            </div>
+            <div class="col-sm-6">
+                @Html.TextBox("Email", "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+            <button type="submit">Submit</button>
+        </div>
+        <div class="col-sm-4">
+        </div>
+
+    </div>
+}
+<hr />
+<h1>Faculty List </h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sr.No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact No</th>
+        </tr>
+    </thead>
+    @if (Session["user"] != null && Model != null)
+    {
+
+
+        int i = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@item.UserName</td>
+                    <td>@item.Email</td>
+                    <td>@item.ContactNo</td>
+                </tr>
+            i++;
+        }
+
+    }
+    </table>

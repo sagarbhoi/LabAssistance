@@ -6,10 +6,10 @@ using System.Web;
 
 namespace VGEC.Models
 {
-    public class IPerson
+    public interface IPerson
     {[Required]
-        public String UserName { get; set; }
+         String UserName { get; set; }
         [Required]
-        public String Password { get; set; }
+         String Password { get; set; }
     }
 }
