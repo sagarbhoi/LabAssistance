@@ -1,0 +1,52 @@
+﻿@model IEnumerable<VGEC.Models.Faculty>
+@{
+    Layout = "~/Views/Shared/_LoginAdmin.cshtml";
+}
+@{
+    List<int> a= new List<int>();
+    int year = DateTime.Now.Year - 8;
+    for(int i=year;i<=year+8;i++)
+    {
+        a.Add(i);
+    }
+}
+    <div class="row">
+        <div class="com-sm-2">
+
+        </div>
+        <div class="com-sm-8">
+            <div class="col-sm-6">
+                @Html.Label("Class Id");
+            </div>
+            <div class="col-sm-6">
+                @Html.DropDownList("Class Id",new SelectList(a),new { @class="form-control"})
+            </div>
+        </div>
+        <div class="com-sm-2">
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="com-sm-2">
+
+        </div>
+        <div class="com-sm-8">
+            <div class="col-sm-6">
+                @Html.Label("Faculty Name");
+            </div>
+            <div class="col-sm-6">
+                <select class="form-control">
+                    @foreach (var item in Model)
+                    {
+                        <option>@item.UserName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="com-sm-2">
+
+        </div>
+
+    </div>

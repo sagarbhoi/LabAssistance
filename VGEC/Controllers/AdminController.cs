@@ -58,6 +58,7 @@ namespace VGEC.Controllers
         public ActionResult AddSubject(Subject sub)
         {
             adminviewmodal.AddSubject(sub);
+            TempData["add"] = "Subject Added Sucessfully";
             return View(adminviewmodal.GetAllSubject());
         }
         public ActionResult AddFaculty()
@@ -67,8 +68,47 @@ namespace VGEC.Controllers
         [HttpPost]
         public ActionResult AddFaculty(Faculty f)
         {
+            TempData["add"] = "Faculty Added Sucessfully";
             adminviewmodal.AddFaculty(f);
             return View(adminviewmodal.GetAllFacuilty());
         }
+        public ActionResult AssignMentor()
+        {
+            return View(adminviewmodal.GetAssignMentor());
+        }
+        [HttpPost]
+        public ActionResult AssignMentor(Faculty f)
+        {
+            TempData["add"] = "Faculty Added Sucessfully";
+            adminviewmodal.AddFaculty(f);
+            return View(adminviewmodal.GetAllFacuilty());
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return View(adminviewmodal.GetFaculty(id));
+        }
+        [HttpPost]
+        public ActionResult Edit(Faculty f)
+        {
+            if(adminviewmodal.EditDetails(f))
+            {
+                TempData["add"] = "Edited Sucessfully";
+                return RedirectToAction("AddFaculty");
+            }
+            TempData["add"] = "Something Wrong..Try Again";
+            return View("AddFaculty");
+        }
+        public ActionResult Delete(int id)
+        {
+            if (adminviewmodal.DeleteFaculty(id))
+            {
+                TempData["add"] = "Deleted Sucessfully";
+                return RedirectToAction("AddFaculty");
+            }
+            TempData["add"] = "Something Wrong..Try Again";
+            return View("AddFaculty");
+        }
+        
     }
 }

@@ -7,8 +7,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
-<body>
+<body >
    
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -25,6 +26,7 @@
                     <li>@Html.ActionLink("Home", "Home", "Admin")</li>
                     <li>@Html.ActionLink("Add Faculties", "AddFaculty", "Admin")</li>
                     <li>@Html.ActionLink("Add Subject", "AddSubject", "Admin")</li>
+                    <li>@Html.ActionLink("Assign Mentor", "AssignMentor", "Admin")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["user"] == null)
@@ -43,12 +45,14 @@
         </div>
     </div>
     <div class="container body-content">
-        @if (TempData["error"] != null)
-        {
-            <div class="alert alert-danger">
-                @TempData["error"]
-            </div>
-        }
+        <div class="message">
+            @if (TempData["add"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["add"]
+                </div>
+            }
+        </div>
         @RenderBody()
         <hr />
         <footer>

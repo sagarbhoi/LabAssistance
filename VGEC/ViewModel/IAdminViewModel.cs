@@ -14,5 +14,11 @@ namespace VGEC.ViewModel
         void AddFaculty(Faculty faculty);
         IEnumerable<Subject> GetAllSubject();
         void AddSubject(Subject f);
+        bool EditDetails(Faculty faculty);
+
+        Faculty GetFaculty(int fac_id);
+
+        bool DeleteFaculty(int fac_id);
+        IEnumerable<Faculty> GetAssignMentor();
     }
 }

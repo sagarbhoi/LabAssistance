@@ -2,6 +2,11 @@
 @{
     Layout = "~/Views/Shared/_LoginAdmin.cshtml";
 }
+    <style>
+        .row {
+            margin: 1%
+        }
+    </style>
 @using (Html.BeginForm())
 {
     <div class="row">
@@ -47,7 +52,7 @@
         </div>
 
     </div>
-}
+
 <hr />
 <h1>Faculty List </h1>
 <table class="table">
@@ -64,16 +69,19 @@
 
 
         int i = 1;
-            foreach (var item in Model)
-            {
+        foreach (var item in Model)
+        {
                 <tr>
                     <td>@i</td>
                     <td>@item.UserName</td>
                     <td>@item.Email</td>
                     <td>@item.ContactNo</td>
+                    <td>@Html.ActionLink("Edit", "Edit",new {id=item.Fac_Id })</td>
+                    <td>@Html.ActionLink("Delete", "Delete", new {id=item.Fac_Id },new { onclick = "return confirm('Are sure wants to delete?');" })</td>
                 </tr>
             i++;
         }
 
     }
     </table>
+}

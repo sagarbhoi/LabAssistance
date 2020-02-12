@@ -9,7 +9,7 @@ namespace VGEC.Models
 {
     public enum Users
     {
-        [Display(Name = "prz elew")]
+        [Display(Name = "Select User")]
         SelectUser,
         Student,
         Faculty,

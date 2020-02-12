@@ -212,6 +212,8 @@
     <Content Include="Views\Shared\_LoginAdmin.cshtml" />
     <Content Include="Views\Admin\AddFaculty.cshtml" />
     <Content Include="Views\Admin\AddSubject.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\AssignMentor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
